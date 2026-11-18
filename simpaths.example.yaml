@@ -1,0 +1,18 @@
+# Map the four upstream simulation repositories used by RoboRLBench.
+#
+# Copy this file to `simpaths.yaml` (next to it) or to
+# `~/.roborlbench/simpaths.yaml` and edit the paths.  Environment variables
+# take precedence over this file, and a sibling directory needs no
+# configuration at all:
+#
+#   ROBORLBENCH_LEGGED_HUNT
+#   ROBORLBENCH_LEGGED_HUNT_SINGLE
+#   ROBORLBENCH_GO2_RL_LAB
+#   ROBORLBENCH_OPENSO101
+#
+# Run `roborlbench doctor` to see which paths were resolved.
+
+legged_hunt:        /path/to/legged_hunt-main
+legged_hunt_single: /path/to/legged_hunt-main-single
+go2_rl_lab:         /path/to/Go2_control/go2_rl_lab-lab3.0
+openso101:          /path/to/OpenSO-101-main

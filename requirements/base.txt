@@ -1,0 +1,9 @@
+# Core requirements: enough to run every algorithm on the built-in
+# analytic environments (CPU only).
+numpy>=1.21
+torch>=2.0
+pyyaml>=6.0
+
+# optional, recommended
+tensorboard>=2.12
+pytest>=7.0

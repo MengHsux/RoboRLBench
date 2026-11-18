@@ -1,0 +1,29 @@
+# Go2 flat-ground velocity tracking (Isaac Lab) with the CrossQ baseline.
+#   roborlbench train --config configs/go2-flat-crossq.yaml
+# Needs a working Isaac Lab installation (docs/ENVIRONMENTS.md).
+env: go2-flat
+algo: crossq
+
+# 4096 parallel robots is the rsl_rl / Isaac Lab default for locomotion.
+num_envs: 4096
+total_steps: 20000000
+seed: 0
+device: cuda:0
+
+eval_interval: 500000
+eval_episodes: 8
+save_interval: 2000000
+
+log_dir: runs
+run_name: crossq-go2-flat
+
+env_kwargs: {}
+algo_kwargs:
+  buffer_size: 20000000
+  batch_size: 512
+  warmup: 100000
+  # Update-to-data ratio = grad_steps / num_envs. 512 / 4096 is UTD ~ 0.125;
+  # raise towards 4096 (UTD = 1, the CrossQ/SAC recipe) if the GPU keeps up.
+  grad_steps: 512
+  lr: 0.0003
+  hidden: [256, 256]

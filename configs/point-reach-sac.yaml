@@ -1,0 +1,24 @@
+# Maximum-entropy baseline on the CPU reference task.
+#   roborlbench train --config configs/point-reach-sac.yaml
+env: point-reach
+algo: sac
+
+num_envs: 4
+total_steps: 100000
+seed: 0
+device: cpu
+
+eval_interval: 10000
+eval_episodes: 10
+save_interval: 50000
+
+log_dir: runs
+run_name: sac-point-reach
+
+env_kwargs: {}
+algo_kwargs:
+  buffer_size: 300000
+  batch_size: 256
+  warmup: 2000
+  grad_steps: 1
+  lr: 0.0003

@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roborlbench"
+version = "0.1.0"
+description = "A reproducible deep-RL benchmark for legged locomotion, multi-robot cooperative hunting and arm manipulation"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "RoboRLBench contributors" }]
+keywords = [
+  "reinforcement-learning",
+  "benchmark",
+  "legged-robotics",
+  "multi-agent-rl",
+  "isaac-gym",
+  "isaac-lab",
+  "mujoco",
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.21",
+  "torch>=2.0",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# CPU-only analytic environments + MuJoCo backends (no GPU simulator needed).
+mujoco = ["mujoco>=3.1"]
+# Logging / plotting extras used by the CLI.
+log = ["tensorboard>=2.12"]
+dev = ["pytest>=7.0", "pytest-timeout>=2.1"]
+# GPU simulator backends are installed *outside* pip (see scripts/ and docs).
+# They are listed here only for documentation purposes.
+isaaclab = []
+isaacgym = []
+
+[project.scripts]
+roborlbench = "roborlbench.cli:main"
+
+[project.urls]
+Documentation = "https://github.com/your-org/RoboRLBench#readme"
+Source = "https://github.com/your-org/RoboRLBench"
+
+[tool.setuptools.packages.find]
+include = ["roborlbench*"]
+
+[tool.setuptools.package-data]
+roborlbench = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+  "slow: marks tests that take longer than a few seconds",
+  "sim: marks tests that require a GPU simulator (Isaac Gym / Isaac Lab)",
+]

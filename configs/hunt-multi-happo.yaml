@@ -1,0 +1,24 @@
+# Three Go2 wolf-hunt (MuJoCo) with a heterogeneous-agent baseline.
+#   roborlbench train --config configs/hunt-multi-happo.yaml
+env: hunt-multi-mujoco
+algo: happo
+
+num_envs: 8
+total_steps: 20000000
+seed: 0
+device: cpu
+
+eval_interval: 500000
+eval_episodes: 4
+save_interval: 2000000
+
+log_dir: runs
+run_name: happo-hunt-multi
+
+env_kwargs: {}
+algo_kwargs:
+  rollout_steps: 32
+  num_epochs: 5
+  num_minibatches: 4
+  clip_range: 0.2
+  lr: 0.0003

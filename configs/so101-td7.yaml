@@ -1,0 +1,25 @@
+# SO-101 reach (MuJoCo) with TD7, the strongest model-free single-agent baseline.
+#   roborlbench train --config configs/so101-td7.yaml
+env: so101-mujoco
+algo: td7
+
+num_envs: 8
+total_steps: 5000000
+seed: 0
+device: cpu
+
+eval_interval: 100000
+eval_episodes: 5
+save_interval: 500000
+
+log_dir: runs
+run_name: td7-so101
+
+env_kwargs:
+  task: reach
+algo_kwargs:
+  buffer_size: 2000000
+  batch_size: 256
+  warmup: 5000
+  grad_steps: 4
+  lr: 0.0003
